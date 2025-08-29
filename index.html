@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário CRIE - Diabetes Mellitus - Unaí/MG</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #003366, #0066cc);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .header h3 {
+      font-size: 16px;
+      opacity: 0.9;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      opacity: 0.8;
+      font-style: italic;
+    }
+
+    .form-content {
+      padding: 30px;
+    }
+
+    .section {
+      margin-bottom: 35px;
+      border: 1px solid #e1e5e9;
+      border-radius: 8px;
+      padding: 25px;
+      background: #f8f9fa;
+    }
+
+    .section h2 {
+      color: #003366;
+      font-size: 18px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid #003366;
+      padding-bottom: 10px;
+    }
+
+    .section h2::before {
+      content: counter(section-counter);
+      counter-increment: section-counter;
+      background: #003366;
+      color: white;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      margin-right: 10px;
+    }
+
+    body {
+      counter-reset: section-counter;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .form-group.small {
+      flex: 0 0 150px;
+    }
+
+    .form-group.medium {
+      flex: 0 0 250px;
+    }
+
+    label {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    input, select, textarea {
+      padding: 10px;
+      border: 2px solid #e1e5e9;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #0066cc;
+      box-shadow: 0 0 0 3px rgba(0,102,204,0.1);
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+    }
+
+    .checkbox-item label {
+      margin: 0;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .vaccine-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .vaccine-table th {
+      background: linear-gradient(135deg, #003366, #0066cc);
+      color: white;
+      padding: 15px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .vaccine-table td {
+      padding: 15px;
+      border-bottom: 1px solid #e1e5e9;
+      vertical-align: top;
+    }
+
+    .vaccine-table tr:hover {
+      background: #f8f9fa;
+    }
+
+    .vaccine-checkbox {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .vaccine-name {
+      font-weight: 600;
+      color: #003366;
+    }
+
+    .vaccine-obs {
+      font-size: 13px;
+      color: #666;
+      font-style: italic;
+    }
+
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .history-table th {
+      background: #f8f9fa;
+      color: #333;
+      padding: 12px;
+      border: 1px solid #e1e5e9;
+      font-weight: 600;
+    }
+
+    .history-table td {
+      padding: 10px;
+      border: 1px solid #e1e5e9;
+    }
+
+    .history-table input {
+      width: 100%;
+      border: 1px solid #ddd;
+      padding: 8px;
+      border-radius: 4px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 2px solid #e1e5e9;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0066cc, #003366);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #6c757d;
+      color: white;
+    }
+
+    .btn-success {
+      background: #28a745;
+      color: white;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .references {
+      background: #e7f3ff;
+      border-left: 4px solid #0066cc;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .references h3 {
+      color: #003366;
+      margin-bottom: 15px;
+    }
+
+    .references ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .references li {
+      padding: 5px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .references li::before {
+      content: "📋";
+      position: absolute;
+      left: 0;
+    }
+
+    .alert {
+      padding: 15px;
+      border-radius: 6px;
+      margin: 15px 0;
+      border: 1px solid;
+    }
+
+    .alert-info {
+      background: #d1ecf1;
+      border-color: #bee5eb;
+      color: #0c5460;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #e1e5e9;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #0066cc, #003366);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        flex-direction: column;
+      }
+      
+      .form-group.small, .form-group.medium {
+        flex: 1;
+        min-width: auto;
+      }
+      
+      .vaccine-table, .history-table {
+        font-size: 12px;
+      }
+      
+      .vaccine-table th, .vaccine-table td,
+      .history-table th, .history-table td {
+        padding: 8px;
+      }
+    }
+
+    .tooltip {
+      position: relative;
+      cursor: help;
+    }
+
+    .tooltip::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 5px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .tooltip:hover::after {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Formulário de Prescrição Vacinal e Encaminhamento ao CRIE</h1>
+      <h3>Município de Unaí – MG</h3>
+      <h3>Secretaria Municipal de Saúde</h3>
+      <p class="subtitle">Baseado nas Diretrizes do PNI/CRIE – Atualização 2025</p>
+    </div>
+
+    <div class="form-content">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <form id="crieForm">
+        <!-- Seção 1: Identificação do Paciente -->
+        <div class="section">
+          <h2>Identificação do Paciente</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nomeCompleto">Nome completo *</label>
+              <input type="text" id="nomeCompleto" name="nomeCompleto" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group medium">
+              <label for="cartaoSUS">Cartão SUS *</label>
+              <input type="text" id="cartaoSUS" name="cartaoSUS" placeholder="000 0000 0000 0000" maxlength="18" required>
+            </div>
+            <div class="form-group small">
+              <label for="dataNascimento">Data de nascimento *</label>
+              <input type="date" id="dataNascimento" name="dataNascimento" required>
+            </div>
+            <div class="form-group small">
+              <label for="sexo">Sexo *</label>
+              <select id="sexo" name="sexo" required>
+                <option value="">Selecione</option>
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group medium">
+              <label for="cpf">CPF</label>
+              <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" maxlength="14">
+            </div>
+            <div class="form-group medium">
+              <label for="telefone">Contato telefônico</label>
+              <input type="tel" id="telefone" name="telefone" placeholder="(38) 90000-0000">
+            </div>
+            <div class="form-group">
+              <label for="municipio">Município de residência *</label>
+              <input type="text" id="municipio" name="municipio" value="Unaí" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seção 2: Diagnóstico -->
+        <div class="section">
+          <h2>Diagnóstico e Justificativa Clínica</h2>
+          <div class="form-row">
+            <div class="form-group medium">
+              <label for="cid10">CID-10 *</label>
+              <select id="cid10" name="cid10" required>
+                <option value="">Selecione o CID</option>
+                <option value="E10">E10 - Diabetes mellitus tipo 1</option>
+                <option value="E11">E11 - Diabetes mellitus tipo 2</option>
+                <option value="E12">E12 - Diabetes mellitus relacionado à desnutrição</option>
+                <option value="E13">E13 - Outros tipos especificados de diabetes mellitus</option>
+                <option value="E14">E14 - Diabetes mellitus não especificado</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="tipoDiabetes">Tipo de Diabetes *</label>
+              <select id="tipoDiabetes" name="tipoDiabetes" required>
+                <option value="">Selecione</option>
+                <option value="1">Tipo 1</option>
+                <option value="2">Tipo 2</option>
+                <option value="LADA">LADA</option>
+                <option value="MODY">MODY</option>
+                <option value="Gestacional">Gestacional</option>
+                <option value="Outro">Outro</option>
+              </select>
+            </div>
+            <div class="form-group" id="outroTipoGroup" style="display: none;">
+              <label for="outroTipo">Especifique outro tipo</label>
+              <input type="text" id="outroTipo" name="outroTipo">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Comorbidades associadas</label>
+            <div class="checkbox-group">
+              <div class="checkbox-item">
+                <input type="checkbox" id="has" name="comorbidades" value="HAS">
+                <label for="has">Hipertensão Arterial (HAS)</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="obesidade" name="comorbidades" value="Obesidade">
+                <label for="obesidade">Obesidade</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="cardiopatia" name="comorbidades" value="Cardiopatia">
+                <label for="cardiopatia">Cardiopatia</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="drc" name="comorbidades" value="DRC">
+                <label for="drc" class="tooltip" data-tooltip="Doença Renal Crônica">DRC</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="imunossupressao" name="comorbidades" value="Imunossupressão">
+                <label for="imunossupressao">Imunossupressão</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="outrasComorbidades" name="comorbidades" value="Outras">
+                <label for="outrasComorbidades">Outras</label>
+              </div>
+            </div>
+            <input type="text" id="especificarComorbidades" name="especificarComorbidades" placeholder="Especifique outras comorbidades" style="margin-top: 10px; display: none;">
+          </div>
+
+          <div class="form-group">
+            <label for="justificativa">Justificativa clínica *</label>
+            <textarea id="justificativa" name="justificativa" rows="4" placeholder="Descreva o quadro clínico, controle glicêmico, tempo de diagnóstico e justificativa para solicitação dos imunobiológicos especiais..." required></textarea>
+          </div>
+        </div>
+
+        <!-- Seção 3: Vacinas -->
+        <div class="section">
+          <h2>Imunobiológicos Especiais Solicitados</h2>
+          <div class="alert alert-info">
+            <strong>Atenção:</strong> Selecione as vacinas indicadas conforme protocolo CRIE para pacientes diabéticos.
+          </div>
+          
+          <table class="vaccine-table">
+            <thead>
+              <tr>
+                <th style="width: 50px;">Solicitar</th>
+                <th>Vacina</th>
+                <th>Observações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" class="vaccine-checkbox" id="vpc13" name="vacinas" value="VPC13"></td>
+                <td class="vaccine-name">Pneumocócica 13-valente (VPC13)</td>
+                <td class="vaccine-obs">Dose única. Aplicar preferencialmente antes da VPP23. Indicada para adultos ≥18 anos com diabetes.</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="vaccine-checkbox" id="vpp23" name="vacinas" value="VPP23"></td>
+                <td class="vaccine-name">Pneumocócica 23-valente (VPP23)</td>
+                <td class="vaccine-obs">Reforço após VPC13 (intervalo ≥6 meses). Dose de reforço após 5 anos em situações especiais.</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="vaccine-checkbox" id="dtpa" name="vacinas" value="dTpa"></td>
+                <td class="vaccine-name">dTpa (Tríplice bacteriana acelular)</td>
+                <td class="vaccine-obs">Substitui o reforço da dT convencional. Indicada especialmente se contato com lactentes.</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="vaccine-checkbox" id="hepatiteB" name="vacinas" value="Hepatite B"></td>
+                <td class="vaccine-name">Hepatite B (esquema especial 0-1-2-6 meses)</td>
+                <td class="vaccine-obs">4 doses IM (dobro da dose). Usar em pacientes com resposta sorológica reduzida.</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="vaccine-checkbox" id="influenza" name="vacinas" value="Influenza"></td>
+                <td class="vaccine-name">Influenza (quadrivalente)</td>
+                <td class="vaccine-obs">Anual. Prioritário para diabéticos. Disponível na rede básica durante campanhas.</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="vaccine-checkbox" id="covid19" name="vacinas" value="COVID-19"></td>
+                <td class="vaccine-name">COVID-19</td>
+                <td class="vaccine-obs">Conforme esquema vigente. Diabéticos são grupo prioritário.</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="vaccine-checkbox" id="outraVacina" name="vacinas" value="Outra"></td>
+                <td><input type="text" id="outraVacinaEspec" name="outraVacinaEspec" placeholder="Especificar outra vacina" style="width: 100%; border: 1px solid #ddd; padding: 5px;"></td>
+                <td><input type="text" id="outraVacinaObs" name="outraVacinaObs" placeholder="Observações" style="width: 100%; border: 1px solid #ddd; padding: 5px;"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Seção 4: Histórico Vacinal -->
+        <div class="section">
+          <h2>Histórico Vacinal (Opcional)</h2>
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Vacina</th>
+                <th>Data da última dose</th>
+                <th>Observação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" name="histVacina1" placeholder="Nome da vacina"></td>
+                <td><input type="date" name="histData1"></td>
+                <td><input type="text" name="histObs1" placeholder="Observação"></td>
+              </tr>
+              <tr>
+                <td><input type="text" name="histVacina2" placeholder="Nome da vacina"></td>
+                <td><input type="date" name="histData2"></td>
+                <td><input type="text" name="histObs2" placeholder="Observação"></td>
+              </tr>
+              <tr>
+                <td><input type="text" name="histVacina3" placeholder="Nome da vacina"></td>
+                <td><input type="date" name="histData3"></td>
+                <td><input type="text" name="histObs3" placeholder="Observação"></td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="button" class="btn btn-secondary" onclick="adicionarLinhaHistorico()" style="margin-top: 10px;">
+            ➕ Adicionar mais vacinas ao histórico
+          </button>
+        </div>
+
+        <!-- Seção 5: Dados do Médico -->
+        <div class="section">
+          <h2>Dados do Médico Prescritor</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nomeMedico">Nome completo *</label>
+              <input type="text" id="nomeMedico" name="nomeMedico" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group small">
+              <label for="crm">CRM *</label>
+              <input type="text" id="crm" name="crm" placeholder="12345" required>
+            </div>
+            <div class="form-group small">
+              <label for="uf">UF *</label>
+              <select id="uf" name="uf" required>
+                <option value="">UF</option>
+                <option value="MG" selected>MG</option>
+                <option value="SP">SP</option>
+                <option value="RJ">RJ</option>
+                <option value="ES">ES</option>
+                <!-- Adicionar outras UFs conforme necessário -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="unidadeSolicitante">Unidade solicitante *</label>
+              <input type="text" id="unidadeSolicitante" name="unidadeSolicitante" placeholder="UBS, Hospital, Clínica..." required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group medium">
+              <label for="telefoneInstitucional">Telefone institucional</label>
+              <input type="tel" id="telefoneInstitucional" name="telefoneInstitucional" placeholder="(38) 3000-0000">
+            </div>
+            <div class="form-group small">
+              <label for="dataPrescricao">Data da prescrição *</label>
+              <input type="date" id="dataPrescricao" name="dataPrescricao" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seção 6: Observações -->
+        <div class="section">
+          <h2>Observações Adicionais / Conduta do CRIE</h2>
+          <div class="form-group">
+            <label for="observacoes">Observações complementares</label>
+            <textarea id="observacoes" name="observacoes" rows="4" placeholder="Informações adicionais relevantes, reações adversas prévias, contraindicações, etc."></textarea>
+          </div>
+        </div>
+
+        <!-- Botões de ação -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-secondary" onclick="limparFormulario()">
+            🗑️ Limpar formulário
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="carregarRascunho()">
+            📂 Carregar rascunho
+          </button>
+          <button type="button" class="btn btn-primary" onclick="validarFormulario()">
+            ✅ Validar dados
+          </button>
+          <button type="button" class="btn btn-success" onclick="gerarPDF()">
+            📄 Gerar PDF
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="imprimirFormulario()">
+            🖨️ Imprimir
+          </button>
+          <button type="button" class="btn btn-primary" onclick="salvarRascunho()">
+            💾 Salvar rascunho
+          </button>
+          <button type="button" class="btn btn-primary" onclick="exportarDados()">
+            📤 Exportar JSON
+          </button>
+        </div>
+      </form>
+
+      <!-- Referências -->
+      <div class="references">
+        <h3>Referências Técnicas</h3>
+        <ul>
+          <li>Manual dos CRIEs – Ministério da Saúde – 5ª Edição (2025)</li>
+          <li>Nota Técnica nº 58/2023 – PNI/MS - Vacinação em Pessoas com Diabetes</li>
+          <li>Calendário SBIm – Indicações por Condições Clínicas (Diabetes Mellitus)</li>
+          <li>Protocolo Clínico e Diretrizes Terapêuticas - Diabetes Mellitus Tipo 1 e 2</li>
+          <li>Informe Técnico CRIE/PNI - Imunobiológicos Especiais (2025)</li>
+        </ul>
+      </div>
+
+      <!-- Requisitos para Produção -->
+      <div class="references" style="background: #fff3cd; border-left-color: #ffc107;">
+        <h3>⚠️ Requisitos para Ambiente de Produção</h3>
+        <ul>
+          <li><strong>Hospedagem segura:</strong> Servidor com certificado SSL válido e estável</li>
+          <li><strong>LGPD Compliance:</strong> Servidor brasileiro ou com adequação à LGPD</li>
+          <li><strong>Backup automático:</strong> Sistema de backup diário dos formulários</li>
+          <li><strong>Controle de acesso:</strong> Login obrigatório para médicos autorizados</li>
+          <li><strong>Integração:</strong> Conexão com sistema de prontuário eletrônico</li>
+          <li><strong>Auditoria:</strong> Log de todas as ações realizadas no sistema</li>
+          <li><strong>Criptografia:</strong> Dados sensíveis criptografados no banco</li>
+          <li><strong>Geração PDF:</strong> Biblioteca server-side para PDFs oficiais</li>
+          <li><strong>Notificações:</strong> Alertas automáticos para CRIE Estadual</li>
+          <li><strong>Relatórios:</strong> Dashboard para gestão municipal</li>
+        </ul>
+        
+        <div style="margin-top: 20px; padding: 15px; background: #d1ecf1; border-radius: 6px;">
+          <strong>📋 Checklist de Deploy:</strong><br>
+          □ Servidor HTTPS configurado<br>
+          □ Banco de dados MySQL/PostgreSQL<br>
+          □ PHP 8.0+ ou Node.js 16+<br>
+          □ Sistema de autenticação médica<br>
+          □ Backup automatizado<br>
+          □ Monitoramento 24/7<br>
+          □ Termo de uso e privacidade<br>
+          □ Treinamento da equipe<br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Formatação automática de campos
+    document.getElementById('cartaoSUS').addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      value = value.replace(/(\d{3})(\d{4})(\d{4})(\d{4})/, '$1 $2 $3 $4');
+      e.target.value = value;
+    });
+
+    document.getElementById('cpf').addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+      e.target.value = value;
+    });
+
+    document.getElementById('telefone').addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length <= 10) {
+        value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+      } else {
+        value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+      }
+      e.target.value = value;
+    });
+
+    // Mostrar campo "outro tipo" quando selecionado
+    document.getElementById('tipoDiabetes').addEventListener('change', function(e) {
+      const outroGroup = document.getElementById('outroTipoGroup');
+      if (e.target.value === 'Outro') {
+        outroGroup.style.display = 'flex';
+      } else {
+        outroGroup.style.display = 'none';
+      }
+    });
+
+    // Mostrar campo para especificar outras comorbidades
+    document.getElementById('outrasComorbidades').addEventListener('change', function(e) {
+      const especificarField = document.getElementById('especificarComorbidades');
+      if (e.target.checked) {
+        especificarField.style.display = 'block';
+      } else {
+        especificarField.style.display = 'none';
+      }
+    });
+
+    // Data atual no campo de prescrição
+    document.getElementById('dataPrescricao').valueAsDate = new Date();
+
+    // Barra de progresso
+    function updateProgress() {
+      const requiredFields = document.querySelectorAll('input[required], select[required], textarea[required]');
+      const filledFields = Array.from(requiredFields).filter(field => field.value.trim() !== '');
+      const progress = (filledFields.length / requiredFields.length) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
+    }
+
+    // Atualizar progresso quando campos são preenchidos
+    document.addEventListener('input', updateProgress);
+    document.addEventListener('change', updateProgress);
+
+    // Adicionar linha ao histórico vacinal
+    function adicionarLinhaHistorico() {
+      const tbody = document.querySelector('.history-table tbody');
+      const newRow = document.createElement('tr');
+      const rowCount = tbody.children.length + 1;
+      
+      newRow.innerHTML = `
+        <td><input type="text" name="histVacina${rowCount}" placeholder="Nome da vacina"></td>
+        <td><input type="date" name="histData${rowCount}"></td>
+        <td><input type="text" name="histObs${rowCount}" placeholder="Observação"></td>
+      `;
+      
+      tbody.appendChild(newRow);
+    }
+
+    // Validar formulário
+    function validarFormulario() {
+      const form = document.getElementById('crieForm');
+      const requiredFields = form.querySelectorAll('[required]');
+      let isValid = true;
+      let errors = [];
+
+      // Validar campos obrigatórios
+      requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+          isValid = false;
+          field.style.borderColor = '#dc3545';
+          errors.push(`Campo obrigatório: ${field.previousElementSibling.textContent}`);
+        } else {
+          field.style.borderColor = '#28a745';
+        }
+      });
+
+      // Validar CPF
+      const cpf = document.getElementById('cpf').value.replace(/\D/g, '');
+      if (cpf && !validarCPF(cpf)) {
+        isValid = false;
+        errors.push('CPF inválido');
+        document.getElementById('cpf').style.borderColor = '#dc3545';
+      }
+
+      // Validar Cartão SUS
+      const cartaoSUS = document.getElementById('cartaoSUS').value.replace(/\D/g, '');
+      if (cartaoSUS && cartaoSUS.length !== 15) {
+        isValid = false;
+        errors.push('Cartão SUS deve ter 15 dígitos');
+        document.getElementById('cartaoSUS').style.borderColor = '#dc3545';
+      }
+
+      // Verificar se pelo menos uma vacina foi selecionada
+      const vacinasChecked = document.querySelectorAll('input[name="vacinas"]:checked');
+      if (vacinasChecked.length === 0) {
+        isValid = false;
+        errors.push('Selecione pelo menos uma vacina');
+      }
+
+      // Mostrar resultado da validação
+      if (isValid) {
+        alert('✅ Formulário válido! Pronto para envio.');
+        return true;
+      } else {
+        alert('❌ Erros encontrados:\n\n' + errors.join('\n'));
+        return false;
+      }
+    }
+
+    // Validar CPF
+    function validarCPF(cpf) {
+      if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
+      
+      let soma = 0;
+      for (let i = 0; i < 9; i++) soma += parseInt(cpf[i]) * (10 - i);
+      let resto = 11 - (soma % 11);
+      if (resto === 10 || resto === 11) resto = 0;
+      if (resto !== parseInt(cpf[9])) return false;
+
+      soma = 0;
+      for (let i = 0; i < 10; i++) soma += parseInt(cpf[i]) * (11 - i);
+      resto = 11 - (soma % 11);
+      if (resto === 10 || resto === 11) resto = 0;
+      return resto === parseInt(cpf[10]);
+    }
+
+    // Gerar PDF
+    function gerarPDF() {
+      if (!validarFormulario()) return;
+
+      // Simular geração de PDF
+      const dadosFormulario = coletarDadosFormulario();
+      
+      // Em produção, aqui seria feita a requisição para o servidor
+      alert('📄 Gerando PDF...\n\nEm ambiente de produção, o PDF será gerado automaticamente com os dados preenchidos.\n\nDados coletados: ' + Object.keys(dadosFormulario).length + ' campos preenchidos.');
+      
+      // Log dos dados para desenvolvimento
+      console.log('Dados do formulário:', dadosFormulario);
+    }
+
+    // Salvar rascunho
+    function salvarRascunho() {
+      const dadosFormulario = coletarDadosFormulario();
+      const dataAtual = new Date().toLocaleString('pt-BR');
+      
+      // Salvar no localStorage (apenas para desenvolvimento)
+      const rascunho = {
+        dados: dadosFormulario,
+        dataUltimaSalvamento: dataAtual
+      };
+      
+      try {
+        localStorage.setItem('crie_rascunho_' + dadosFormulario.nomeCompleto, JSON.stringify(rascunho));
+        alert('💾 Rascunho salvo com sucesso!\n\nData: ' + dataAtual + '\n\n⚠️ Em ambiente de produção, os dados serão salvos no servidor seguro da Secretaria de Saúde.');
+      } catch (error) {
+        alert('❌ Erro ao salvar rascunho. Tente novamente.');
+      }
+    }
+
+    // Coletar dados do formulário
+    function coletarDadosFormulario() {
+      const form = document.getElementById('crieForm');
+      const dados = {};
+      
+      // Coletar todos os inputs, selects e textareas
+      const elements = form.querySelectorAll('input, select, textarea');
+      elements.forEach(element => {
+        if (element.type === 'checkbox') {
+          if (!dados[element.name]) dados[element.name] = [];
+          if (element.checked) dados[element.name].push(element.value);
+        } else if (element.type === 'radio') {
+          if (element.checked) dados[element.name] = element.value;
+        } else {
+          dados[element.name] = element.value;
+        }
+      });
+
+      return dados;
+    }
+
+    // Limpar formulário
+    function limparFormulario() {
+      if (confirm('⚠️ Tem certeza que deseja limpar todos os dados do formulário?\n\nEsta ação não pode ser desfeita.')) {
+        document.getElementById('crieForm').reset();
+        document.getElementById('dataPrescricao').valueAsDate = new Date();
+        updateProgress();
+        alert('🗑️ Formulário limpo com sucesso!');
+      }
+    }
+
+    // Carregar rascunho
+    function carregarRascunho() {
+      const nome = prompt('Digite o nome do paciente para carregar o rascunho:');
+      if (!nome) return;
+
+      try {
+        const rascunho = localStorage.getItem('crie_rascunho_' + nome);
+        if (rascunho) {
+          const dados = JSON.parse(rascunho);
+          preencherFormulario(dados.dados);
+          alert('📂 Rascunho carregado!\n\nÚltima modificação: ' + dados.dataUltimaSalvamento);
+        } else {
+          alert('❌ Nenhum rascunho encontrado para este paciente.');
+        }
+      } catch (error) {
+        alert('❌ Erro ao carregar rascunho.');
+      }
+    }
+
+    // Preencher formulário com dados
+    function preencherFormulario(dados) {
+      Object.keys(dados).forEach(key => {
+        const element = document.querySelector(`[name="${key}"]`);
+        if (element) {
+          if (element.type === 'checkbox') {
+            if (Array.isArray(dados[key])) {
+              dados[key].forEach(value => {
+                const checkbox = document.querySelector(`[name="${key}"][value="${value}"]`);
+                if (checkbox) checkbox.checked = true;
+              });
+            }
+          } else {
+            element.value = dados[key];
+          }
+        }
+      });
+      updateProgress();
+    }
+
+    // Exportar dados para JSON
+    function exportarDados() {
+      if (!validarFormulario()) return;
+      
+      const dados = coletarDadosFormulario();
+      const dataAtual = new Date().toISOString().split('T')[0];
+      const nomeArquivo = `CRIE_${dados.nomeCompleto.replace(/\s+/g, '_')}_${dataAtual}.json`;
+      
+      const blob = new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = nomeArquivo;
+      link.click();
+      URL.revokeObjectURL(url);
+      
+      alert('📤 Dados exportados com sucesso!\n\nArquivo: ' + nomeArquivo);
+    }
+
+    // Auto-save a cada 2 minutos
+    setInterval(() => {
+      const nomeCompleto = document.getElementById('nomeCompleto').value;
+      if (nomeCompleto.length > 3) {
+        const dados = coletarDadosFormulario();
+        try {
+          localStorage.setItem('crie_autosave_' + nomeCompleto, JSON.stringify({
+            dados: dados,
+            timestamp: Date.now()
+          }));
+          console.log('Auto-save realizado:', new Date().toLocaleTimeString());
+        } catch (error) {
+          console.error('Erro no auto-save:', error);
+        }
+      }
+    }, 120000); // 2 minutos
+
+    // Verificar auto-save ao carregar página
+    window.addEventListener('load', () => {
+      // Verificar se existe auto-save recente
+      Object.keys(localStorage).forEach(key => {
+        if (key.startsWith('crie_autosave_')) {
+          try {
+            const autoSave = JSON.parse(localStorage.getItem(key));
+            const ageSave = Date.now() - autoSave.timestamp;
+            
+            // Se o auto-save é de menos de 1 hora atrás
+            if (ageSave < 3600000) {
+              const nomeCompleto = key.replace('crie_autosave_', '');
+              if (confirm(`🔄 Encontrado rascunho automático para "${nomeCompleto}".\n\nDeseja carregá-lo?`)) {
+                preencherFormulario(autoSave.dados);
+              }
+            }
+          } catch (error) {
+            console.error('Erro ao verificar auto-save:', error);
+          }
+        }
+      });
+    });
+
+    // Sanitizar dados de entrada
+    function sanitizeInput(input) {
+      if (typeof input !== 'string') return input;
+      return input.trim()
+        .replace(/[<>]/g, '') // Remove caracteres HTML perigosos
+        .replace(/javascript:/gi, '') // Remove javascript:
+        .replace(/on\w+=/gi, ''); // Remove event handlers
+    }
+
+    // Aplicar sanitização em tempo real
+    document.addEventListener('input', function(e) {
+      if (e.target.type === 'text' || e.target.type === 'email' || e.target.tagName === 'TEXTAREA') {
+        const sanitized = sanitizeInput(e.target.value);
+        if (sanitized !== e.target.value) {
+          e.target.value = sanitized;
+        }
+      }
+    });
+
+    // Verificar idade do paciente e mostrar alertas relevantes
+    document.getElementById('dataNascimento').addEventListener('change', function(e) {
+      const nascimento = new Date(e.target.value);
+      const hoje = new Date();
+      const idade = Math.floor((hoje - nascimento) / (365.25 * 24 * 60 * 60 * 1000));
+      
+      if (idade < 18) {
+        alert('⚠️ Paciente menor de idade!\n\nLembre-se de que para menores de 18 anos podem haver restrições específicas para alguns imunobiológicos.');
+      } else if (idade >= 60) {
+        alert('👴 Paciente idoso identificado!\n\nIdosos diabéticos têm prioridade para vacinação pneumocócica e influenza anual.');
+      }
+    });
+
+    // Integração futura com APIs do SUS (placeholder)
+    function consultarCNES() {
+      // Placeholder para consulta ao CNES - Cadastro Nacional de Estabelecimentos de Saúde
+      alert('🏥 Integração CNES\n\nEm produção, aqui será feita a consulta automática ao CNES para validar a unidade solicitante.');
+    }
+
+    function enviarParaSisreg() {
+      // Placeholder para envio ao SISREG - Sistema de Regulação
+      alert('📤 Envio SISREG\n\nEm produção, o formulário será enviado automaticamente para o sistema de regulação estadual.');
+    }
+
+    // Validações adicionais específicas para dados médicos
+    function validacoesEspecializadas() {
+      const tipoDiabetes = document.getElementById('tipoDiabetes').value;
+      const idade = calcularIdade();
+      const vacinasSelec = document.querySelectorAll('input[name="vacinas"]:checked');
+      
+      let alertas = [];
+      
+      // Validação por tipo de diabetes
+      if (tipoDiabetes === '1' && idade < 1) {
+        alertas.push('⚠️ Diabetes tipo 1 em menor de 1 ano é raro - confirmar diagnóstico');
+      }
+      
+      // Validação de vacinas por idade
+      vacinasSelec.forEach(vacina => {
+        if (vacina.value === 'VPC13' && idade < 18) {
+          alertas.push('ℹ️ VPC13: Para menores de 18 anos, verificar esquema pediátrico específico');
+        }
+      });
+      
+      if (alertas.length > 0) {
+        alert('🔍 Validações Clínicas:\n\n' + alertas.join('\n\n'));
+      }
+    }
+
+    function calcularIdade() {
+      const nascimento = document.getElementById('dataNascimento').value;
+      if (!nascimento) return 0;
+      
+      const hoje = new Date();
+      const dataNasc = new Date(nascimento);
+      return Math.floor((hoje - dataNasc) / (365.25 * 24 * 60 * 60 * 1000));
+    }
+
+    // Função de impressão otimizada
+    function imprimirFormulario() {
+      if (!validarFormulario()) return;
+      
+      // Criar versão para impressão
+      const printWindow = window.open('', '_blank');
+      const formData = coletarDadosFormulario();
+      
+      printWindow.document.write(`
+        <html>
+        <head>
+          <title>Formulário CRIE - ${formData.nomeCompleto}</title>
+          <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            .header { text-align: center; border-bottom: 2px solid #003366; padding-bottom: 10px; }
+            .field { margin: 10px 0; }
+            .label { font-weight: bold; }
+            @media print { body { margin: 0; } }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1>Formulário de Prescrição Vacinal - CRIE</h1>
+            <h3>Secretaria Municipal de Saúde - Unaí/MG</h3>
+          </div>
+          <!-- Aqui seria inserido o conteúdo formatado -->
+          <p><strong>Nome:</strong> ${formData.nomeCompleto}</p>
+          <p><strong>Data:</strong> ${new Date().toLocaleDateString('pt-BR')}</p>
+          <!-- Mais campos seriam adicionados aqui -->
+          <script>window.print();</script>
+        </body>
+        </html>
+      `);
+      
+      printWindow.document.close();
+    }
